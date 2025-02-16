@@ -60,11 +60,12 @@ class TurboJpegDecoder {
 
     {
       aos::ScopedNotRealtime nrt;
-      CHECK_EQ(tjDecompress2(handle_, image.data()->data(),
-                             image.data()->size(), image_data_ptr, width,
-                             0 /* pitch */, height, TJPF_GRAY, 0),
-               0)
-          << "Error decompressing image: " << tjGetErrorStr();
+      if (tjDecompress2(handle_, image.data()->data(), image.data()->size(),
+                        image_data_ptr, width, 0 /* pitch */, height, TJPF_GRAY,
+                        0) != 0) {
+        VLOG(1) << "Error decompressing image: " << tjGetErrorStr();
+        return;
+      }
     }
 
     CameraImage::Builder camera_image_builder(*builder.fbb());

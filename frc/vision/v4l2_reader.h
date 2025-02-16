@@ -87,7 +87,7 @@ class V4L2ReaderBase {
 
   // TODO(Brian): This concept won't exist once we start using variable-size
   // H.264 frames.
-  size_t ImageSize() const { return ImageSize(rows_, cols_); }
+  size_t ImageSize() const { return imagesize_; }
   virtual size_t ImageSize(int rows, int cols) const {
     return rows * cols * 2 /* bytes per pixel */;
   }
@@ -159,6 +159,7 @@ class V4L2ReaderBase {
   ImageFormat format_;
   int rows_ = 0;
   int cols_ = 0;
+  int imagesize_ = 0;
 
   aos::ScopedFD fd_;
 

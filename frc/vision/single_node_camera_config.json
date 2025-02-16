@@ -1,5 +1,5 @@
 {
-  "channel_storage_duration": 1000000000,
+  "channel_storage_duration": 500000000,
   "channels" : [
     {
       "name": "/aos",
@@ -7,6 +7,7 @@
       "source_node": "orin",
       "num_senders": 20,
       "frequency": 25,
+      "channel_storage_duration": 2000000000,
       "max_size": 16384
     },
     {
@@ -56,7 +57,7 @@
       "num_readers": 4,
       "source_node": "orin",
       "max_size": 4172800,
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera0/gray",
@@ -65,21 +66,21 @@
       "num_readers": 4,
       "source_node": "orin",
       "logger": "NOT_LOGGED",
-      "channel_storage_duration": 100000000,
+      "channel_storage_duration": 3000000000,
       "max_size": 4172800,
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera0/gray",
       "type": "frc.vision.TargetMap",
       "source_node": "orin",
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera0/gray",
       "type": "foxglove.ImageAnnotations",
       "source_node": "orin",
-      "frequency": 80,
+      "frequency": 125,
       "max_size": 2048
     },
     {
@@ -89,7 +90,7 @@
       "num_readers": 4,
       "source_node": "orin",
       "max_size": 4172800,
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera1/gray",
@@ -100,19 +101,19 @@
       "logger": "NOT_LOGGED",
       "channel_storage_duration": 100000000,
       "max_size": 4172800,
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera1/gray",
       "type": "frc.vision.TargetMap",
       "source_node": "orin",
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera1/gray",
       "type": "foxglove.ImageAnnotations",
       "source_node": "orin",
-      "frequency": 80,
+      "frequency": 125,
       "max_size": 2048
     },
     {
@@ -122,7 +123,7 @@
       "num_readers": 4,
       "source_node": "orin",
       "max_size": 4172800,
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera2/gray",
@@ -133,19 +134,19 @@
       "logger": "NOT_LOGGED",
       "channel_storage_duration": 100000000,
       "max_size": 4172800,
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera2/gray",
       "type": "frc.vision.TargetMap",
       "source_node": "orin",
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera2/gray",
       "type": "foxglove.ImageAnnotations",
       "source_node": "orin",
-      "frequency": 80,
+      "frequency": 125,
       "max_size": 2048
     },
     {
@@ -155,7 +156,7 @@
       "num_readers": 4,
       "source_node": "orin",
       "max_size": 4172800,
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera3/gray",
@@ -166,19 +167,19 @@
       "logger": "NOT_LOGGED",
       "channel_storage_duration": 100000000,
       "max_size": 4172800,
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera3/gray",
       "type": "frc.vision.TargetMap",
       "source_node": "orin",
-      "frequency": 80
+      "frequency": 125
     },
     {
       "name": "/camera3/gray",
       "type": "foxglove.ImageAnnotations",
       "source_node": "orin",
-      "frequency": 80,
+      "frequency": 125,
       "max_size": 2048
     },
     {
@@ -198,7 +199,7 @@
     {
       "name": "camera_reader0",
       "executable_name": "camera_reader",
-      "args": ["--ignore_timestamps", "--viddevice=/dev/videoa", "--imagewidth=1600", "--imageheight=1304"],
+      "args": ["--ignore_timestamps", "--viddevice=/dev/videoa", "--imagewidth=1280", "--imageheight=800", "--imagefps=100"],
       "maps": [{
         "match": {
           "name": "/camera"
@@ -212,7 +213,7 @@
     {
       "name": "camera_reader1",
       "executable_name": "camera_reader",
-      "args": ["--ignore_timestamps", "--viddevice=/dev/videob", "--imagewidth=1600", "--imageheight=1304"],
+      "args": ["--ignore_timestamps", "--viddevice=/dev/videob", "--imagewidth=1280", "--imageheight=800", "--imagefps=100"],
       "maps": [{
         "match": {
           "name": "/camera"
@@ -226,7 +227,7 @@
     {
       "name": "camera_reader2",
       "executable_name": "camera_reader",
-      "args": ["--ignore_timestamps", "--viddevice=/dev/videoc", "--imagewidth=1600", "--imageheight=1304"],
+      "args": ["--ignore_timestamps", "--viddevice=/dev/videoc", "--imagewidth=1280", "--imageheight=800", "--imagefps=100"],
       "maps": [{
         "match": {
           "name": "/camera"
@@ -240,7 +241,7 @@
     {
       "name": "camera_reader3",
       "executable_name": "camera_reader",
-      "args": ["--ignore_timestamps", "--viddevice=/dev/videod", "--imagewidth=1600", "--imageheight=1304"],
+      "args": ["--ignore_timestamps", "--viddevice=/dev/videod", "--imagewidth=1280", "--imageheight=800", "--imagefps=100"],
       "maps": [{
         "match": {
           "name": "/camera"
@@ -338,25 +339,25 @@
     {
       "name": "apriltag_detector0",
       "executable_name": "apriltag_detector",
-      "args": ["--channel", "/camera0/gray", "--image_format=MONO8"],
+      "args": ["--channel", "/camera0/gray", "--image_format=MONO8", "--height=800", "--width=1280"],
       "nodes": ["orin"]
     },
     {
       "name": "apriltag_detector1",
       "executable_name": "apriltag_detector",
-      "args": ["--channel", "/camera1/gray", "--image_format=MONO8"],
+      "args": ["--channel", "/camera1/gray", "--image_format=MONO8", "--height=800", "--width=1280"],
       "nodes": ["orin"]
     },
     {
       "name": "apriltag_detector2",
       "executable_name": "apriltag_detector",
-      "args": ["--channel", "/camera2/gray", "--image_format=MONO8"],
+      "args": ["--channel", "/camera2/gray", "--image_format=MONO8", "--height=800", "--width=1280"],
       "nodes": ["orin"]
     },
     {
       "name": "apriltag_detector3",
       "executable_name": "apriltag_detector",
-      "args": ["--channel", "/camera3/gray", "--image_format=MONO8"],
+      "args": ["--channel", "/camera3/gray", "--image_format=MONO8", "--height=800", "--width=1280"],
       "nodes": ["orin"]
     },
     {
